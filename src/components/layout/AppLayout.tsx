@@ -61,7 +61,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
           {/* User info */}
           <div className="p-4 border-b border-vault-secondary">
             <p className="text-sm text-gray-300">Welcome,</p>
-            <p className="font-medium">{user.name}</p>
+            <p className="font-medium">
+              {user.user_metadata?.full_name || user.email || 'User'}
+            </p>
           </div>
 
           {/* Navigation */}
