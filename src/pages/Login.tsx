@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
@@ -17,18 +16,18 @@ export default function Login() {
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    setTimeout(() => {
-      const success = login(email, password);
+    try {
+      const success = await login(email, password);
       if (success) {
         toast({
           title: "Login successful",
           description: "Welcome to Sentry Document Vault",
         });
-        navigate("/");
+        navigate("/Login");
       } else {
         toast({
           title: "Login failed",
@@ -36,8 +35,15 @@ export default function Login() {
           variant: "destructive",
         });
       }
+    } catch (error) {
+      toast({
+        title: "Login failed",
+        description: "An unexpected error occurred",
+        variant: "destructive",
+      });
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (

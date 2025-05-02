@@ -39,7 +39,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
           variant="outline"
           size="icon"
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="bg-white shadow-md"
+          className="bg-gradient-to-r from-blue-300 to-white shadow-md"
         >
           {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
         </Button>
